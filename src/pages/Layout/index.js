@@ -6,6 +6,7 @@ import {
   EditOutlined,
   LogoutOutlined
 } from '@ant-design/icons';
+import { Outlet, Link } from 'react-router-dom';
 import './index.scss'
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -30,13 +31,13 @@ export default function GeekLayout() {
           mode="inline"
           defaultSelectedKeys={['4']}>
           <Menu.Item icon={<HomeOutlined />} key="1">
-            数据概览
+            <Link to="/">数据概览</Link>
           </Menu.Item>
           <Menu.Item icon={<DiffOutlined />} key="2">
-            内容管理
+            <Link to="/article">内容管理</Link>
           </Menu.Item>
           <Menu.Item icon={<EditOutlined />} key="3">
-            发布文章
+            <Link to="/publish">发布文章</Link>
           </Menu.Item>
         </Menu>
       </Sider>
@@ -53,7 +54,7 @@ export default function GeekLayout() {
         </Header>
         <Content style={{ margin: '24px 16px 0' }}>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 640 }}>
-            content
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
