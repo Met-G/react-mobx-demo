@@ -37,10 +37,14 @@
 
 .site-layout-sub-header-background {
   background: #fff;
+  position: 'sticky';
+  top: 0;
+  padding: 0
 }
 
 .site-layout-background {
   background: #fff;
+  padding: 24;
 }
 
 .ant-menu {

@@ -13,7 +13,14 @@ const { Header, Content, Footer, Sider } = Layout;
 function GeekLayout() {
   const { pathname } = useLocation();
 
-  const { userStore, loginStore } = useStore()
+  const { userStore, loginStore, channelStore } = useStore()
+
+  useEffect(() => {
+    try {
+      userStore.getUserInfo();
+      channelStore.loadChannelList();
+    } catch (err) { }
+  }, [userStore])
 
   const navigate = useNavigate();
   const onLogout = () => {
@@ -21,17 +28,12 @@ function GeekLayout() {
     navigate('/login');
   }
 
-  useEffect(() => {
-    try {
-      userStore.getUserInfo()
-    } catch (err) { }
-  }, [userStore])
-
   return (
     <Layout>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
+        style={{ overflow: 'hidden' }}
       >
         <div className="logo" />
         <Menu
@@ -51,7 +53,7 @@ function GeekLayout() {
         </Menu>
       </Sider>
       <Layout>
-        <Header className="site-layout-sub-header-background" style={{ position: 'sticky', top: 0, padding: 0 }} >
+        <Header className="site-layout-sub-header-background"  >
           <div className="user-info">
             <span className="user-name">{userStore.userInfo.name}</span>
             <span className="user-logout">
@@ -62,7 +64,7 @@ function GeekLayout() {
           </div>
         </Header>
         <Content style={{ margin: '24px 16px 0' }}>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 640 }}>
+          <div className="site-layout-background">
             <Outlet />
           </div>
         </Content>
