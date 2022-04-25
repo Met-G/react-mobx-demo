@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Layout, Menu, Popconfirm, Breadcrumb } from 'antd';
+import { Layout, Menu, Popconfirm } from 'antd';
 import {
   HomeOutlined, DiffOutlined, EditOutlined, LogoutOutlined
 } from '@ant-design/icons';
@@ -20,7 +20,7 @@ function GeekLayout() {
       userStore.getUserInfo();
       channelStore.loadChannelList();
     } catch (err) { }
-  }, [userStore])
+  }, [userStore, channelStore])
 
   const navigate = useNavigate();
   const onLogout = () => {
